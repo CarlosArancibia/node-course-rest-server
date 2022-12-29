@@ -6,7 +6,8 @@ const {
   validateExistEmail,
   validateExistUserById,
 } = require("../helpers/db-validators");
-const { validateFields } = require("../middlewares/validate-fields");
+
+const { validateFields, validateJWT, isAdminRole, hasRole } = require("../middlewares");
 
 const route = Router();
 
@@ -42,6 +43,9 @@ route.patch("/", patchUsers);
 route.delete(
   "/:id",
   [
+    validateJWT,
+    // isAdminRole,
+    hasRole("ADMIN_ROLE", "SALES_ROLE"),
     check("id", "The ID is not valid").isMongoId(),
     check("id").custom(validateExistUserById),
     validateFields,
