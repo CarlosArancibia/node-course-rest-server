@@ -35,7 +35,7 @@
 
         const body = { id_token: response.credential };
 
-        fetch("https://node-course-rest-server-production.up.railway.app/api/auth/google", {
+        fetch("http://localhost:8081/api/auth/google", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
