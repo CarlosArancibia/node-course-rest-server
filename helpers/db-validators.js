@@ -45,10 +45,21 @@ const validateExistProductById = async (id) => {
   }
 };
 
+/**
+ * Uploads
+ */
+const validateAllowedCollections = (collection, allowedCollection = []) => {
+  if (!allowedCollection.includes(collection)) {
+    throw new Error(`The collection: ${collection} is not allowed`);
+  }
+  return true;
+};
+
 module.exports = {
   validateExistRole,
   validateExistEmail,
   validateExistUserById,
   validateExistCategoryById,
   validateExistProductById,
+  validateAllowedCollections,
 };
